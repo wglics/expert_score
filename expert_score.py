@@ -66,7 +66,7 @@ def run(prompt_ls, model, tokenizer, bsz=100, max_length=32):
         expert_score = model_outputs[3] # tuple, len = n_layers
         expert_score = torch.stack(expert_score, dim=0)
         n_layers, _, n_experts = expert_score.shape
-        expert_score = expert_score.reshape(n_layers, -1, max_length, n_experts) # shape: [n_layers, n_prompts, n_tokens, n_experts]
+        expert_score = expert_score.reshape(n_layers, -1, max_length, n_experts) # shape: [n_layers, cur_n_prompts, n_tokens, n_experts]
 
         # for test
         top_n_experts = torch.argsort(expert_score, dim=3, descending=True)[:,:,:, :8] # get top-8 experts
