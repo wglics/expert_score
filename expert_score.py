@@ -56,7 +56,7 @@ def run(prompt_ls, model, tokenizer, bsz=100, max_length=32):
     """ Run the model and get the scores.
     :param1 prompt_ls: list of prompts
     :param4 bsz: batch size
-    :param5 max_length: the ACTUAL length of each prompt. should ensure that the prompts are longer enough to be truncated.
+    :param5 max_length: the ACTUAL token length of each prompt. should ensure that the prompts are long enough to be truncated.
     """
     batch_token = tokenizer(prompt_ls, return_tensors="pt", max_length=max_length, padding=False, truncation=True)
     n_prompts = len(prompt_ls)
